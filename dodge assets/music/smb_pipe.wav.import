@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/smb_pipe.wav-6a73ccb9721331180f20a612faf39e70.sample"
+
+[deps]
+
+source_file="res://dodge assets/music/smb_pipe.wav"
+dest_files=[ "res://.import/smb_pipe.wav-6a73ccb9721331180f20a612faf39e70.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

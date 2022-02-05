@@ -4,6 +4,7 @@ extends RigidBody2D
 # Declare member variables here. Examples:
 export var min_speed = 150
 export var max_speed = 250
+export var speed_multiplier = 1
 
 
 # Called when the node enters the scene tree for the first time.

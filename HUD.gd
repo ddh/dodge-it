@@ -24,15 +24,16 @@ func show_message(text):
 	
 func show_game_over():
 	show_message("Game Over!")
-	# Wait until the MessageTimer has counted down.
+	
+#	# Wait until the MessageTimer has counted down.
 	yield($MessageTimer, "timeout")
 	
-	$MessageLabel.text = "Dodge the\nCreeps!"
+	$MessageLabel.text = "Try again?"
 	$MessageLabel.show()
 	
 	# Make a one-shot timer and wait for it to finish
 	yield(get_tree().create_timer(1), "timeout")
-	$StartButton.show()
+	$ContinueButton.show()
 
 func update_score(score):
 	$ScoreLabel.text = str(score)
@@ -43,5 +44,14 @@ func _on_MessageTimer_timeout():
 
 
 func _on_StartButton_pressed():
+	print("HUD - Start button pressed")
 	$StartButton.hide()
 	emit_signal("start_game")
+	
+func _on_ContinueButton_pressed():
+	print("HUD - Continue button pressed")
+	$ContinueButton.hide()
+	$MessageLabel.text = "Dodge the Shells!!"
+	$MessageLabel.show()
+	$StartButton.show()
+	emit_signal("continue")

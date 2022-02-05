@@ -1,34 +1,37 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://dodge assets/art/enemySwimming_1.png" type="Texture" id=1]
-[ext_resource path="res://dodge assets/art/enemySwimming_2.png" type="Texture" id=2]
-[ext_resource path="res://dodge assets/art/enemyFlyingAlt_1.png" type="Texture" id=3]
-[ext_resource path="res://dodge assets/art/enemyFlyingAlt_2.png" type="Texture" id=4]
-[ext_resource path="res://dodge assets/art/enemyWalking_1.png" type="Texture" id=5]
-[ext_resource path="res://dodge assets/art/enemyWalking_2.png" type="Texture" id=6]
+[ext_resource path="res://dodge assets/art/shell-blue-1.png" type="Texture" id=1]
+[ext_resource path="res://dodge assets/art/shell-green-1.png" type="Texture" id=2]
+[ext_resource path="res://dodge assets/art/shell-red-1.png" type="Texture" id=3]
+[ext_resource path="res://dodge assets/art/shell-red-2.png" type="Texture" id=4]
+[ext_resource path="res://dodge assets/art/shell-blue-2.png" type="Texture" id=5]
+[ext_resource path="res://dodge assets/art/shell-green-2.png" type="Texture" id=6]
 [ext_resource path="res://Mob.gd" type="Script" id=7]
+[ext_resource path="res://dodge assets/art/shell-green-3.png" type="Texture" id=8]
+[ext_resource path="res://dodge assets/art/shell-blue-3.png" type="Texture" id=9]
+[ext_resource path="res://dodge assets/art/shell-red-3.png" type="Texture" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "walk",
+"name": "blue",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 6 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "swim",
+"name": "green",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 10 ) ],
 "loop": true,
-"name": "fly",
+"name": "red",
 "speed": 5.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 35.4426
-height = 40.7418
+radius = 28.7407
+height = 9.45965
 
 [node name="Mob" type="RigidBody2D" groups=[
 "mobs",
@@ -42,16 +45,19 @@ __meta__ = {
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 0.75, 0.75 )
+scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 1 )
-animation = "walk"
+animation = "green"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -6, -1 )
+visible = false
+position = Vector2( 0.363953, 4.65685 )
 rotation = 1.5708
 shape = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
+[connection signal="body_entered" from="." to="." method="_on_Mob_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

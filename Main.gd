@@ -7,11 +7,6 @@ func _ready():
 	randomize()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _on_MobTimer_timeout():
 	# Choose a random location on Path2D.
 	$MobPath/MobSpawnLocation.offset = randi()
@@ -26,7 +21,12 @@ func _on_MobTimer_timeout():
 	direction += rand_range(-PI / 4, PI / 4)
 	mob.rotation = direction
 	# Set the velocity (speed & direction).
-	mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
+	
+	# This line is chooses a random speed
+	# mob.linear_velocity = Vector2(rand_range(mob.min_speed, mob.max_speed), 0)
+	
+	# This line multiples the speed depending on the score.
+	mob.linear_velocity = Vector2(mob.min_speed + score * 2.0, 0)
 	mob.linear_velocity = mob.linear_velocity.rotated(direction)
 
 	
@@ -40,8 +40,10 @@ func _on_ScoreTimer_timeout():
 
 
 func game_over():
+	print("Main - Game Over")
 	$HUD.show_game_over()
-	$GameOverMusic.play()
+	$CharacterDeadMusic.play()
+	$BackgroundMusic.stop()
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	
@@ -55,3 +57,7 @@ func new_game():
 	
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
+
+
+func _on_CharacterDeadMusic_finished():
+	$GameOverMusic.play()

@@ -33,9 +33,26 @@ anchor_bottom = 0.5
 margin_top = -79.0
 margin_bottom = 80.0
 custom_fonts/font = SubResource( 1 )
-text = "Dodge the Creeps!"
+text = "Dodge the Shells!!"
 align = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ContinueButton" type="Button" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -164.267
+margin_top = -274.544
+margin_right = 144.733
+margin_bottom = -174.544
+custom_fonts/font = SubResource( 1 )
+shortcut = SubResource( 3 )
+text = "Continue"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -45,10 +62,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -84.0
-margin_top = -200.0
-margin_right = 84.0
-margin_bottom = -100.0
+margin_left = -163.196
+margin_top = -272.125
+margin_right = 145.804
+margin_bottom = -172.125
 custom_fonts/font = SubResource( 1 )
 shortcut = SubResource( 3 )
 text = "Start"
@@ -60,5 +77,6 @@ __meta__ = {
 wait_time = 2.0
 one_shot = true
 
+[connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]

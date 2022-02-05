@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/smb_overworld_theme.mp3-e20bf29902ddf47812e0bf3bc06f89c7.mp3str"
+
+[deps]
+
+source_file="res://dodge assets/music/smb_overworld_theme.mp3"
+dest_files=[ "res://.import/smb_overworld_theme.mp3-e20bf29902ddf47812e0bf3bc06f89c7.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
