@@ -36,7 +36,6 @@ position = Vector2( 240, 450 )
 stream = ExtResource( 9 )
 
 [node name="MobTimer" type="Timer" parent="."]
-wait_time = 0.5
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
