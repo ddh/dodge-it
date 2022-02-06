@@ -35,6 +35,10 @@ func _on_MobTimer_timeout():
 	var speed = min(mob.min_speed + score * 5.0, 400)
 	mob.linear_velocity = Vector2(speed, 0)
 	mob.linear_velocity = mob.linear_velocity.rotated(direction)
+	
+	# TODO: Make shells home in on player
+	# TODO: Make shells bounce of walls
+	# TODO: Make shells bounce of each other
 
 	print("Launching a %s Shell @ speed: %s. Next shell in %ss" % [mob.shell_type, speed, $MobTimer.wait_time])
 	
