@@ -102,7 +102,7 @@ func _on_InvincibilityTimer_timeout():
 	$SmallCollision.set_deferred("disabled", false)
 
 func _on_Player_hit():
-	for i in 10:
+	for i in 5:
 		hide()
 		yield(get_tree().create_timer(0.1), "timeout")
 		show()

@@ -51,7 +51,6 @@ func _on_ScoreTimer_timeout():
 	score += 1
 	$HUD.update_score(score)
 
-
 func game_over():
 	print("Main - Game Over")
 	$HUD.show_game_over()
@@ -74,12 +73,8 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Here we go!")
 
-
-
 func _on_CharacterDeadMusic_finished():
 	$GameOverMusic.play()
-
-
 
 func _on_PowerUpTimer_timeout():
 	print("PowerUp Timer timed out")
