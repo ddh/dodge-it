@@ -62,6 +62,7 @@ func game_over():
 	$PowerUpTimer.stop()
 	
 	get_tree().call_group("mobs", "queue_free")
+	get_tree().call_group("powerups", "queue_free")
 
 func new_game():
 	$BackgroundMusic.play()
@@ -71,7 +72,7 @@ func new_game():
 	$StartTimer.start()
 	
 	$HUD.update_score(score)
-	$HUD.show_message("Get Ready")
+	$HUD.show_message("Here we go!")
 
 
 
