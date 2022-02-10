@@ -107,3 +107,12 @@ func _on_Player_hit():
 		yield(get_tree().create_timer(0.1), "timeout")
 		show()
 		yield(get_tree().create_timer(0.1), "timeout")
+
+
+func _on_Player_area_shape_entered(area_id, area, area_shape, local_shape):
+	print("on_player_area_shape_entered" + area.get_name())
+	if area.is_in_group("powerups"):
+		print("Mario ate a mushroom!")
+		i_am_big = true;
+		$BigCollision.set_deferred('disabled', false)
+		$SmallCollision.set_deferred('disabled', true)

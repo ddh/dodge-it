@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://dodge assets/music/smb_overworld_theme.mp3" type="AudioStream" id=6]
 [ext_resource path="res://dodge assets/music/smb_mariodie.wav" type="AudioStream" id=7]
 [ext_resource path="res://dodge assets/music/smb_stomp.wav" type="AudioStream" id=8]
+[ext_resource path="res://PowerUp.tscn" type="PackedScene" id=9]
+[ext_resource path="res://PowerUpPosition.gd" type="Script" id=10]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -17,19 +19,21 @@ _data = {
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
 Mob = ExtResource( 3 )
+PowerUp = ExtResource( 9 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.737255, 0.152941, 0.235294, 1 )
+color = Color( 0, 0.541176, 0.772549, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="StartPosition" type="Position2D" parent="."]
-position = Vector2( 240, 450 )
+position = Vector2( 231.5, 500.5 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 39.8198, 45.8302 )
 
 [node name="MobTimer" type="Timer" parent="."]
 
@@ -60,9 +64,23 @@ stream = ExtResource( 8 )
 [node name="CharacterDeadMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
+[node name="PowerUp" parent="." instance=ExtResource( 9 )]
+visible = false
+position = Vector2( 153.5, 146 )
+
+[node name="PowerUpPosition" type="Position2D" parent="."]
+position = Vector2( 231.5, 384.5 )
+script = ExtResource( 10 )
+
+[node name="PowerUpTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="death" from="Player" to="." method="game_over"]
+[connection signal="hit" from="Player" to="." method="_on_Player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="finished" from="CharacterDeadMusic" to="." method="_on_CharacterDeadMusic_finished"]
+[connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]
+[connection signal="timeout" from="PowerUpTimer" to="PowerUpPosition" method="_on_PowerUpTimer_timeout"]
