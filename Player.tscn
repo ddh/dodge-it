@@ -77,5 +77,4 @@ stream = ExtResource( 9 )
 [connection signal="area_shape_entered" from="." to="." method="_on_Player_area_shape_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 [connection signal="hit" from="." to="." method="_on_Player_hit"]
-[connection signal="power_down" from="." to="." method="_on_Player_power_down"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]

@@ -1,6 +1,7 @@
 extends Node
 
 export (PackedScene) var Mob
+export (PackedScene) var PowerUp
 var score
 
 func _ready():
@@ -58,6 +59,7 @@ func game_over():
 	$BackgroundMusic.stop()
 	$ScoreTimer.stop()
 	$MobTimer.stop()
+	$PowerUpTimer.stop()
 	
 	get_tree().call_group("mobs", "queue_free")
 
@@ -80,8 +82,9 @@ func _on_CharacterDeadMusic_finished():
 
 func _on_PowerUpTimer_timeout():
 	print("PowerUp Timer timed out")
-#	$PowerUp.spawn($PowerUpPosition.position)
-	$PowerUp.spawn($StartPosition.position)
+	var powerup = PowerUp.instance()
+	add_child(powerup)
+	powerup.spawn($PowerUpPosition.position)
 
 func _on_Player_hit():
 	print("Mario was hit!, Starting up a PowerUp Timer...")

@@ -54,4 +54,3 @@ func _on_ContinueButton_pressed():
 	$MessageLabel.text = "Dodge the Shells!!"
 	$MessageLabel.show()
 	$StartButton.show()
-	emit_signal("continue")
