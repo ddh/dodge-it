@@ -6,9 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 26.5, 26.5 )
 
-[node name="PowerUp" type="Area2D" groups=[
-"powerups",
-]]
+[node name="PowerUp" type="Area2D" groups=["powerups"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

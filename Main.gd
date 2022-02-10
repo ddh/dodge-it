@@ -85,7 +85,7 @@ func _on_PowerUpTimer_timeout():
 	print("PowerUp Timer timed out")
 	var powerup = PowerUp.instance()
 	add_child(powerup)
-	powerup.spawn($PowerUpPosition.position)
+	powerup.spawn()
 
 func _on_Player_hit():
 	print("Mario was hit!, Starting up a PowerUp Timer...")

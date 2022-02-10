@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://dodge assets/music/smb_mariodie.wav" type="AudioStream" id=7]
 [ext_resource path="res://dodge assets/music/smb_stomp.wav" type="AudioStream" id=8]
 [ext_resource path="res://PowerUp.tscn" type="PackedScene" id=9]
-[ext_resource path="res://PowerUpPosition.gd" type="Script" id=10]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -64,14 +63,6 @@ stream = ExtResource( 8 )
 [node name="CharacterDeadMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
-[node name="PowerUp" parent="." instance=ExtResource( 9 )]
-visible = false
-position = Vector2( 153.5, 146 )
-
-[node name="PowerUpPosition" type="Position2D" parent="."]
-position = Vector2( 231.5, 384.5 )
-script = ExtResource( 10 )
-
 [node name="PowerUpTimer" type="Timer" parent="."]
 one_shot = true
 
@@ -83,4 +74,3 @@ one_shot = true
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="finished" from="CharacterDeadMusic" to="." method="_on_CharacterDeadMusic_finished"]
 [connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]
-[connection signal="timeout" from="PowerUpTimer" to="PowerUpPosition" method="_on_PowerUpTimer_timeout"]

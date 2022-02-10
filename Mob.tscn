@@ -33,9 +33,7 @@ animations = [ {
 radius = 28.7407
 height = 9.45965
 
-[node name="Mob" type="RigidBody2D" groups=[
-"mobs",
-]]
+[node name="Mob" type="RigidBody2D" groups=["mobs"]]
 position = Vector2( 0.707092, 0 )
 collision_mask = 0
 gravity_scale = 0.0
@@ -48,7 +46,6 @@ __meta__ = {
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 1 )
 animation = "green"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
