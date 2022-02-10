@@ -3,6 +3,7 @@ extends Area2D
 # Preparing for collisions
 signal hit
 signal death
+signal power_down
 
 
 # Declare member variables here. Examples:
@@ -71,6 +72,7 @@ func _on_Player_body_entered(body):
 			return
 		elif i_am_big:
 			emit_signal("hit")
+			emit_signal("power_down")
 			i_am_big = false # No longer powered up.
 			i_am_invincible = true # Temp invincibility timer
 			$InvincibilityTimer.start()
@@ -107,3 +109,11 @@ func _on_Player_hit():
 		yield(get_tree().create_timer(0.1), "timeout")
 		show()
 		yield(get_tree().create_timer(0.1), "timeout")
+
+
+func _on_Player_area_shape_entered(area_id, area, area_shape, local_shape):
+	if area.name == "PowerUp":
+		print("Mario ate a mushroom!")
+		i_am_big = true;
+		$BigCollision.set_deferred('disabled', false)
+		$SmallCollision.set_deferred('disabled', true)

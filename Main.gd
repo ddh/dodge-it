@@ -72,5 +72,17 @@ func new_game():
 	$HUD.show_message("Get Ready")
 
 
+
 func _on_CharacterDeadMusic_finished():
 	$GameOverMusic.play()
+
+
+
+func _on_PowerUpTimer_timeout():
+	print("PowerUp Timer timed out")
+#	$PowerUp.spawn($PowerUpPosition.position)
+	$PowerUp.spawn($StartPosition.position)
+
+func _on_Player_hit():
+	print("Mario was hit!, Starting up a PowerUp Timer...")
+	$PowerUpTimer.start()

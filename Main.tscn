@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://dodge assets/music/smb_overworld_theme.mp3" type="AudioStream" id=6]
 [ext_resource path="res://dodge assets/music/smb_mariodie.wav" type="AudioStream" id=7]
 [ext_resource path="res://dodge assets/music/smb_stomp.wav" type="AudioStream" id=8]
+[ext_resource path="res://PowerUp.tscn" type="PackedScene" id=9]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -30,6 +31,7 @@ __meta__ = {
 position = Vector2( 240, 450 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 39.8198, 45.8302 )
 
 [node name="MobTimer" type="Timer" parent="."]
 
@@ -60,9 +62,23 @@ stream = ExtResource( 8 )
 [node name="CharacterDeadMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
+[node name="PowerUp" parent="." instance=ExtResource( 9 )]
+visible = false
+position = Vector2( 153.5, 146 )
+
+[node name="PowerUpPosition" type="Position2D" parent="."]
+position = Vector2( 480, 900 )
+
+[node name="PowerUpTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_shape_entered" from="Player" to="." method="_on_Player_body_shape_entered"]
 [connection signal="death" from="Player" to="." method="game_over"]
+[connection signal="hit" from="Player" to="." method="_on_Player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="finished" from="CharacterDeadMusic" to="." method="_on_CharacterDeadMusic_finished"]
+[connection signal="body_entered" from="PowerUp" to="." method="_on_PowerUp_body_entered"]
+[connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]

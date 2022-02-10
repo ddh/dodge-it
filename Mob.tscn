@@ -51,7 +51,6 @@ animation = "green"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0.363953, 4.65685 )
 rotation = 1.5708
 shape = SubResource( 2 )
