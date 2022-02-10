@@ -89,4 +89,5 @@ func _on_PowerUpTimer_timeout():
 
 func _on_Player_hit():
 	print("Mario was hit!, Starting up a PowerUp Timer...")
+	$PowerUpTimer.wait_time = rand_range(5, 10)
 	$PowerUpTimer.start()
