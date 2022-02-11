@@ -102,17 +102,24 @@ func _on_InvincibilityTimer_timeout():
 	$SmallCollision.set_deferred("disabled", false)
 
 func _on_Player_hit():
-	for i in 5:
-		hide()
-		yield(get_tree().create_timer(0.1), "timeout")
-		show()
-		yield(get_tree().create_timer(0.1), "timeout")
+	blink()
 
 
 func _on_Player_area_shape_entered(area_id, area, area_shape, local_shape):
 	print("on_player_area_shape_entered" + area.get_name())
 	if area.is_in_group("powerups"):
 		print("Mario ate a mushroom!")
-		i_am_big = true;
+		$PowerUpSfx.play()
+		blink()
+		i_am_big = true
+		i_am_invincible = true
+		$InvincibilityTimer.start()
 		$BigCollision.set_deferred('disabled', false)
 		$SmallCollision.set_deferred('disabled', true)
+
+func blink():
+	for i in 5:
+		hide()
+		yield(get_tree().create_timer(0.1), "timeout")
+		show()
+		yield(get_tree().create_timer(0.1), "timeout")
