@@ -50,20 +50,29 @@ func _on_StartTimer_timeout():
 func _on_ScoreTimer_timeout():
 	score += 1
 	$HUD.update_score(score)
-
-func game_over():
-	print("Main - Game Over")
-	$HUD.show_game_over()
+	
+func death():
+	print("Mario is dead.")
 	$CharacterDeadMusic.play()
 	$BackgroundMusic.stop()
+	
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$PowerUpTimer.stop()
 	
-	get_tree().call_group("mobs", "queue_free")
+	get_tree().call_group("mobs", "stop")
 	get_tree().call_group("powerups", "queue_free")
+	
+	yield(get_tree().create_timer(5.0), "timeout")
+	game_over()
+	
+
+func game_over():
+	print("Show Game Over Screen")
+	$HUD.show_game_over()
 
 func new_game():
+	get_tree().call_group("mobs", "queue_free")
 	$BackgroundMusic.play()
 	score = 0
 	$MobTimer.wait_time = 1

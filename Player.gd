@@ -2,7 +2,7 @@ extends Area2D
 
 # Preparing for collisions
 signal hit
-signal death
+signal died
 
 
 # Declare member variables here. Examples:
@@ -81,7 +81,7 @@ func _on_Player_body_entered(body):
 			$SmallCollision.set_deferred("disabled", false)
 		# Player isn't powered up, so death occurs.
 		else:
-			emit_signal("death")
+			emit_signal("died")
 			alive = false
 			$SmallCollision.set_deferred("disabled", true)
 			hide()  # Player disappears after being hit.

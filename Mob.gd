@@ -37,3 +37,6 @@ func _ready():
 # When the shell leaves the screen, it is marked for deletion to free up space.
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
+
+func stop():
+	set_deferred("linear_velocity", Vector2(0,0))

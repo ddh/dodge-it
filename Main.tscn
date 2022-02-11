@@ -66,7 +66,7 @@ stream = ExtResource( 7 )
 [node name="PowerUpTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="death" from="Player" to="." method="game_over"]
+[connection signal="died" from="Player" to="." method="death"]
 [connection signal="hit" from="Player" to="." method="_on_Player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_MobTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
