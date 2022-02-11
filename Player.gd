@@ -10,7 +10,7 @@ export var speed = 400 # (pixels/sec)
 var screen_size # Size of game window
 var i_am_big = true
 var i_am_invincible = true
-var alive = true
+var controls_enabled = true
 
 
 # Called when the node enters the scene tree for the first time.
@@ -26,14 +26,15 @@ func _process(delta):
 	var velocity = Vector2()
 	
 	# Keyboard controls and movement
-	if Input.is_action_pressed("ui_right"):
-		velocity.x += 1
-	if Input.is_action_pressed("ui_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("ui_up"):
-		velocity.y -= 1
-	if Input.is_action_pressed("ui_down"):
-		velocity.y += 1
+	if controls_enabled:
+		if Input.is_action_pressed("ui_right"):
+			velocity.x += 1
+		if Input.is_action_pressed("ui_left"):
+			velocity.x -= 1
+		if Input.is_action_pressed("ui_up"):
+			velocity.y -= 1
+		if Input.is_action_pressed("ui_down"):
+			velocity.y += 1
 		
 	# Play animation when char is moving:
 	if velocity.length() > 0:
@@ -82,14 +83,18 @@ func _on_Player_body_entered(body):
 		# Player isn't powered up, so death occurs.
 		else:
 			emit_signal("died")
-			alive = false
+			controls_enabled = false
 			$SmallCollision.set_deferred("disabled", true)
-			hide()  # Player disappears after being hit.
+			$PlayerSprite.hide()
+			$DeathSprite.show()
 
 func start(pos):
+	controls_enabled = true
 	position = pos
 	i_am_big = true # Player is powered up to start.
 	show() # Show the Player on screen.
+	$PlayerSprite.show()
+	$DeathSprite.hide()
 	$BigCollision.disabled = false # Player starts big, with matching collision box size.
 	$SmallCollision.disabled = true # Disable the smaller collision box size.
 
