@@ -19,6 +19,6 @@ func spawn():
 	position = Vector2(random_x, random_y)
 	show()
 
-func _on_Area2D_area_entered(area):
+func _on_Area2D_area_entered(_area):
 	print("Removing Powerup")
 	queue_free()

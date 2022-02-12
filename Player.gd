@@ -113,7 +113,7 @@ func _on_Player_hit():
 	blink()
 
 
-func _on_Player_area_shape_entered(area_id, area, area_shape, local_shape):
+func _on_Player_area_shape_entered(_area_id, area, _area_shape, _local_shape):
 	print("on_player_area_shape_entered" + area.get_name())
 	if area.is_in_group("powerups"):
 		print("Mario ate a mushroom!")
