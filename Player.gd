@@ -128,3 +128,8 @@ func blink():
 		yield(get_tree().create_timer(0.1), "timeout")
 		show()
 		yield(get_tree().create_timer(0.1), "timeout")
+
+
+func _on_Player_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
+	print("_on_Player_body_shape_entered + %s %s %s %s" % [body_rid, body, body_shape_index, local_shape_index])
+	pass # Replace with function body.
