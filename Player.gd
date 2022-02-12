@@ -9,7 +9,7 @@ signal died
 export var speed = 400 # (pixels/sec)
 var screen_size # Size of game window
 var i_am_big = true
-var i_am_invincible = true
+var i_am_invincible = false
 var controls_enabled = true
 
 
@@ -67,7 +67,7 @@ func _on_Player_body_entered(body):
 		print("I got hit by an enemy!")
 		
 		# Player is powered up.
-		if i_am_invincible && !i_am_big:
+		if i_am_invincible:
 			print("Player - I'm invincible!")
 			return
 		elif i_am_big:
@@ -104,7 +104,10 @@ func start(pos):
 func _on_InvincibilityTimer_timeout():
 	i_am_invincible = false
 	print("Player - No longer invincible, after the timeout.")
-	$SmallCollision.set_deferred("disabled", false)
+	if i_am_big:
+		$BigCollision.set_deferred("disabled", false)
+	else:
+		$SmallCollision.set_deferred("disabled", false)
 
 func _on_Player_hit():
 	blink()

@@ -64,8 +64,6 @@ func death():
 	get_tree().call_group("powerups", "queue_free")
 	
 	yield(get_tree().create_timer(5.0), "timeout")
-	game_over()
-	
 
 func game_over():
 	print("Show Game Over Screen")
@@ -84,6 +82,7 @@ func new_game():
 
 func _on_CharacterDeadMusic_finished():
 	$GameOverMusic.play()
+	game_over()
 
 func _on_PowerUpTimer_timeout():
 	print("PowerUp Timer timed out")
